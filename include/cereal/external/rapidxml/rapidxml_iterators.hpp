@@ -1,13 +1,14 @@
-#ifndef CEREAL_RAPIDXML_ITERATORS_HPP_INCLUDED
-#define CEREAL_RAPIDXML_ITERATORS_HPP_INCLUDED
+#ifndef RAPIDXML_ITERATORS_HPP_INCLUDED
+#define RAPIDXML_ITERATORS_HPP_INCLUDED
 
 // Copyright (C) 2006, 2009 Marcin Kalicinski
-// Version 1.13
-// Revision $DateTime: 2009/05/13 01:46:17 $
+// Copyright (C) 2019 https://github.com/Fe-Bell/RapidXML
+// Version 1.17
+// Revision $DateTime: 2023/09/19 23:27:00 $
+//! \file rapidxml_iterators.hpp This file contains rapidxml iterators
 
 #include "rapidxml.hpp"
 
-namespace cereal {
 namespace rapidxml
 {
 
@@ -15,7 +16,7 @@ namespace rapidxml
     template<class Ch>
     class node_iterator
     {
-
+    
     public:
 
         typedef typename xml_node<Ch> value_type;
@@ -23,7 +24,7 @@ namespace rapidxml
         typedef typename xml_node<Ch> *pointer;
         typedef std::ptrdiff_t difference_type;
         typedef std::bidirectional_iterator_tag iterator_category;
-
+        
         node_iterator()
             : m_node(0)
         {
@@ -33,7 +34,7 @@ namespace rapidxml
             : m_node(node->first_node())
         {
         }
-
+        
         reference operator *() const
         {
             assert(m_node);
@@ -74,12 +75,12 @@ namespace rapidxml
             return tmp;
         }
 
-        bool operator ==(const node_iterator<Ch> &rhs)
+        bool operator ==(const node_iterator<Ch> &rhs) const
         {
             return m_node == rhs.m_node;
         }
 
-        bool operator !=(const node_iterator<Ch> &rhs)
+        bool operator !=(const node_iterator<Ch> &rhs) const
         {
             return m_node != rhs.m_node;
         }
@@ -94,7 +95,7 @@ namespace rapidxml
     template<class Ch>
     class attribute_iterator
     {
-
+    
     public:
 
         typedef typename xml_attribute<Ch> value_type;
@@ -102,7 +103,7 @@ namespace rapidxml
         typedef typename xml_attribute<Ch> *pointer;
         typedef std::ptrdiff_t difference_type;
         typedef std::bidirectional_iterator_tag iterator_category;
-
+        
         attribute_iterator()
             : m_attribute(0)
         {
@@ -112,7 +113,7 @@ namespace rapidxml
             : m_attribute(node->first_attribute())
         {
         }
-
+        
         reference operator *() const
         {
             assert(m_attribute);
@@ -170,6 +171,5 @@ namespace rapidxml
     };
 
 }
-} // namespace cereal
 
 #endif
