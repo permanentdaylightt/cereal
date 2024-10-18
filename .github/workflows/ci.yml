@@ -169,7 +169,21 @@ jobs:
     name: ${{ matrix.name }}
 
     steps:
+      - name: Setup enviroment
+        run: |
+            if [[ "${{ matrix.container }}" == "ubuntu:16.04" ]]; then
+              echo "GHA_USE_NODE_20=false" >> $GITHUB_ENV
+              echo "ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true" >> $GITHUB_ENV
+            else
+              echo "GHA_USE_NODE_20=true" >> $GITHUB_ENV
+            fi
+      
       - name: Checkout repository
+        if: env.GHA_USE_NODE_20 == 'false'
+        uses: actions/checkout@v3
+
+      - name: Checkout repository
+        if: env.GHA_USE_NODE_20 == 'true'
         uses: actions/checkout@v4
 
       - name: Install dependencies and test
