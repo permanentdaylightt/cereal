@@ -2,7 +2,8 @@ name: Cereal Mac CI
 
 on: 
   workflow_dispatch:
-  [push, pull_request]
+  push:
+  pull_request:
 
 jobs:
   test_cereal_macos:
