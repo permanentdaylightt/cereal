@@ -1,6 +1,6 @@
 name: Cereal Mac CI
 
-on: 
+on:
   workflow_dispatch:
   push:
   pull_request:
